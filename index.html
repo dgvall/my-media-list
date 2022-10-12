@@ -5,13 +5,21 @@
     <script src= "index.js"></script>
   </head>
   <body>
-    <h1> My TV List</h1>
-    <form id= "search-form">
-      <input type="text" name="text">
-      <input type="submit" name="submit" value="Search">
-    </form>
-    <div id = "card-container">
-
+    <div class="top-bar">
+      <h1 class="bar-content">Keep a list of your favorite shows!</h1>
+      <div id="bar-clickable">
+        <h2 id= "list" class = "bar-content">My List</h2>
+        <!-- <h2 id="search" class = "bar-content">Search</h2> -->
+        <form id= "search-form">
+          <input type="text" name="text">
+          <input type="submit" name="submit" value="Search">
+        </form>
+      </div>
     </div>
+    <!-- <div id = "search-bar"></div> -->
+  <div id = "body-content">
+    <div id = "list-filters"></div>
+    <div id = "card-container"></div>
+  </div>
   </body>
 </html>
