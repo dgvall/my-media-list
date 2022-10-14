@@ -1,0 +1,67 @@
+{
+  "shows": [
+    {
+      "title": "Breaking Bad",
+      "status": "Completed",
+      "score": "10",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg",
+      "totalepisodes": 60,
+      "id": 1
+    },
+    {
+      "title": "Better Call Saul",
+      "status": "Completed",
+      "score": "10",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/399/998743.jpg",
+      "totalepisodes": 60,
+      "id": 2
+    },
+    {
+      "title": "Game of Thrones",
+      "status": "Completed",
+      "score": "9",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/190/476117.jpg",
+      "totalepisodes": 60,
+      "id": 3
+    },
+    {
+      "title": "The Sopranos",
+      "status": "Completed",
+      "score": "10",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/4/11341.jpg",
+      "totalepisodes": 60,
+      "id": 4
+    },
+    {
+      "title": "Death Note",
+      "status": "Completed",
+      "score": "8",
+      "episodes": "30",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/403/1009233.jpg",
+      "totalepisodes": 30,
+      "id": 5
+    },
+    {
+      "title": "Mr. Robot",
+      "status": "Dropped",
+      "score": "6",
+      "episodes": "12",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/211/528026.jpg",
+      "totalepisodes": 60,
+      "id": 6
+    },
+    {
+      "title": "Ozark",
+      "status": "Completed",
+      "score": "9",
+      "episodes": "51",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/398/996611.jpg",
+      "totalepisodes": null,
+      "id": 7
+    }
+  ]
+}

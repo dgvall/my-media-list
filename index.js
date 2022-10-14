@@ -18,12 +18,12 @@ function search() {
 // Prevent searches from stacking
 function clearSearch() {
   let container = document.getElementById("card-container")
-  container.innerHTML =  ``
+  container.innerHTML =  ""
 }
 
 function clearList() {
   let list = document.getElementById("list-filters")
-  list.innerHTML = ``
+  list.innerHTML = ""
 }
 
 // Get Request for API
@@ -34,7 +34,6 @@ function searchMovies(search) {
     for(show of shows) {
       createCards(show.show)
     }
-   
   })
 }
 
@@ -48,9 +47,8 @@ function createCards(show) {
   card.className = "card"
   img.className = "cardImg"
   title.className = "title"
-
-  img.src= show.image.medium
-  title.innerHTML = show.name 
+  img.src= show.image.medium || show.image
+  title.innerHTML = show.name || show.title
 
   // Create Popup Div on Click with more info
   card.addEventListener("click", (e) =>{
@@ -63,6 +61,17 @@ function createCards(show) {
 }
 
 function showMore(show) {
+  // EPISODE COUNT NOT WORKING
+  // const epCount = function() {
+  //   fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
+  //   .then((res) => res.json())
+  //   .then((data) => data.length)
+  // }
+
+  // console.log(epCount())
+
+  // EPISODE COUNT NOT WORKING
+
   // Window
   const window = document.createElement("div")
   window.className = "pop-up"
@@ -78,7 +87,7 @@ function showMore(show) {
 
   const title = document.createElement("div")
   title.className = "pop-up-title"
-  title.textContent = show.name
+  title.textContent = show.name || show.title
 
   const button = document.createElement("button")
   button.className = "close-button"
@@ -106,15 +115,19 @@ function showMore(show) {
 
   const planning = document.createElement("option")
   planning.textContent = "Plan to watch"
+  planning.value = "Plan to watch"
 
   const watching = document.createElement("option")
   watching.textContent = "Watching"
+  watching.value = "Watching"
 
   const completed = document.createElement("option")
   completed.textContent = "Completed"
+  completed.value = "Completed"
 
   const dropped = document.createElement("option")
   dropped.textContent = "Dropped"
+  dropped.value = "Dropped"
   
   // Body 2 (Score)
   const score = document.createElement("div")
@@ -125,8 +138,10 @@ function showMore(show) {
   scoreLabel.textContent = "Score"
 
   const scoreInput = document.createElement("input")
-  scoreInput.type = "text"
-  scoreInput.name = "text"
+  scoreInput.type = "number"
+  scoreInput.name = "number"
+  scoreInput.max = 10
+  scoreInput.min = 0
 
 // Body 3 (Episodes)
   const episodes = document.createElement("div")
@@ -137,8 +152,17 @@ function showMore(show) {
   epLabel.textContent = "Episodes Watched"
 
   const epInput = document.createElement("input")
-  epInput.type = "text"
-  epInput.name = "text"
+  epInput.type = "number"
+  epInput.name = "number"
+  epInput.min = 0
+  epInput.max = show.runtime || show.totalepisodes
+
+  epInput.addEventListener("change", (e) => {
+    console.log(episodes.childNodes[1].value)
+    if (parseInt(episodes.childNodes[1].value) === show.runtime || show.totalepisodes) {
+      select.value = "Completed"
+    }
+  })
 
    // Foot
    const foot = document.createElement("div")
@@ -146,7 +170,53 @@ function showMore(show) {
  
    const saveButton = document.createElement("button")
    saveButton.textContent = "Save"
- 
+
+   saveButton.addEventListener("click", (e) => {
+    fetch("http://localhost:3000/shows")
+      .then(res => res.json())
+      .then((data) => {
+        let object = {}
+      for(tvshow of data) {
+       object[tvshow.title] = tvshow.id
+      }
+
+      let found = Object.keys(object).find((element) => element === title.textContent)
+      if(found) {
+        fetch(`http://localhost:3000/shows/${object[found]}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          status: select.value,
+          score: score.childNodes[1].value,
+          episodes: episodes.childNodes[1].value,
+        })
+      })
+      .then((res) => res.json())
+      .then((show) => show)
+      } 
+
+      else {
+         fetch("http://localhost:3000/shows", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        title: show.name,
+        status: select.value,
+        score: score.childNodes[1].value,
+        episodes: episodes.childNodes[1].value,
+        image: show.image.medium,
+        totalepisodes: show.runtime
+      })
+    })
+    .then((res) => res.json())
+    .then((show) => {})
+      }
+      })
+   })
 
 // Append Elements
 
@@ -182,6 +252,44 @@ function showMore(show) {
   // Foot
   window.appendChild(foot)
   foot.appendChild(saveButton)
+  
+  // Fill Information If Logged
+  fetch("http://localhost:3000/shows")
+  .then((res) => res.json())
+  .then((data) => {
+    let object = {}
+    console.log(data[0].status)
+
+    for(listshow of data) {
+      object[listshow.title] = listshow.id
+
+      // // From Search
+      // if(listshow.title === show.name) {
+      //   select.value = listshow.status
+      //   score.childNodes[1].value = listshow.score
+      //   episodes.childNodes[1].value = listshow.episodes
+      // } 
+      // // From List
+      // if(show.name === undefined) {
+      //   select.value = listshow.status
+      //   score.childNodes[1].value = listshow.score
+      //   episodes.childNodes[1].value = listshow.episodes
+      // }
+    }
+    console.log(object)
+    let fillTitle = Object.keys(object).find(element => element === title.textContent)
+
+
+    let id = parseInt(object[fillTitle]) - 1
+    console.log(id)
+    console.log(data[id].status)
+    
+    if(fillTitle === title.textContent) {
+      select.value = data[id].status
+      score.childNodes[1].value = data[id].score
+      episodes.childNodes[1].value = data[id].episodes
+    }
+  })
 }
 
 function removeElements(element1, element2){
@@ -195,6 +303,7 @@ function list () {
   const myList = document.getElementById("list")
   myList.addEventListener("click", (e) => {
     clearSearch()
+    createList()
     createFilters()
     // createSort()
   })
@@ -204,7 +313,7 @@ function createFilters() {
   const filters = document.getElementById("list-filters")
   const container = document.getElementById("card-container")
 
-  if ( filters.innerHTML === "") {
+  if (filters.innerHTML === "") {
     const all = document.createElement("button")
     all.textContent = "All"
     filters.appendChild(all)
@@ -225,10 +334,21 @@ function createFilters() {
     dropped.textContent = "Dropped"
     filters.appendChild(dropped)
   }
-  if (container.innerHTML === "") {
-    filters.innerHTML = ""
-    container.innerText = "Try Searching First!"
-  }
+
+  // if (container.innerHTML === "") {
+  //   filters.innerHTML = ""
+  //   container.innerText = "Try Searching First!"
+  // }
+}
+
+function createList() {
+  fetch("http://localhost:3000/shows")
+  .then((res) => res.json())
+  .then((data) => {
+    for(show of data) {
+      createCards(show)
+    }
+  })
 }
 
 // function createSort () {
