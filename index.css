@@ -32,9 +32,57 @@
   /* Try searching first font size */
   font-size: 20px;
   display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+#watching-container {
+  /* Try searching first font size */
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#completed-container {
+  /* Try searching first font size */
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#dropped-container {
+  /* Try searching first font size */
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#planning-container {
+  /* Try searching first font size */
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#filtered-containers {
+  /* display: flex;
+  justify-content: center; */
+}
+
+.filter-header {
+  display: flex;
+  justify-content: center;
+}
+
 
 .card {
   width: 210px;

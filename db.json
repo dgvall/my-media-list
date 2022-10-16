@@ -58,10 +58,37 @@
       "title": "Ozark",
       "status": "Completed",
       "score": "9",
-      "episodes": "51",
+      "episodes": "52",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/398/996611.jpg",
       "totalepisodes": null,
       "id": 7
+    },
+    {
+      "title": "Legacy: The True Story of the LA Lakers",
+      "status": "Watching",
+      "score": "8",
+      "episodes": "7",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/417/1044636.jpg",
+      "totalepisodes": null,
+      "id": 8
+    },
+    {
+      "title": "Narcos",
+      "status": "Plan to watch",
+      "score": "",
+      "episodes": "",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/166/416516.jpg",
+      "totalepisodes": null,
+      "id": 9
+    },
+    {
+      "title": "Dexter",
+      "status": "Plan to watch",
+      "score": "",
+      "episodes": "2",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/145/363769.jpg",
+      "totalepisodes": 60,
+      "id": 10
     }
   ]
 }

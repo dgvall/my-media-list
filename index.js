@@ -19,6 +19,30 @@ function search() {
 function clearSearch() {
   let container = document.getElementById("card-container")
   container.innerHTML =  ""
+
+  let watching = document.getElementById("watching-container")
+  watching.innerHTML = ""
+
+  let watchingHead = document.getElementById("watching-head")
+  watchingHead.innerHTML = ""
+
+  let completed = document.getElementById("completed-container")
+  completed.innerHTML = ""
+
+  let completedHead = document.getElementById("completed-head")
+  completedHead.innerHTML = ""
+
+  let dropped = document.getElementById("dropped-container")
+  dropped.innerHTML = ""
+
+  let droppedHead = document.getElementById("dropped-head")
+  droppedHead.innerHTML = ""
+
+  let planning = document.getElementById("planning-container")
+  planning.innerHTML = ""
+
+  let planningHead = document.getElementById("planning-head")
+  planningHead.innerHTML = ""
 }
 
 function clearList() {
@@ -38,8 +62,8 @@ function searchMovies(search) {
 }
 
 // Create Cards
-function createCards(show) {
-  const container = document.getElementById("card-container")
+function createCards(show, id="card-container") {
+  const container = document.getElementById(id)
   const card = document.createElement("div")
   const img = document.createElement("img")
   const title = document.createElement("div")
@@ -61,16 +85,17 @@ function createCards(show) {
 }
 
 function showMore(show) {
-  // EPISODE COUNT NOT WORKING
+  console.log(show)
+  //        EPISODE COUNT NOT WORKING
   // const epCount = function() {
   //   fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
   //   .then((res) => res.json())
-  //   .then((data) => data.length)
+  //   .then(data => data.length)
   // }
 
   // console.log(epCount())
 
-  // EPISODE COUNT NOT WORKING
+  //        EPISODE COUNT NOT WORKING
 
   // Window
   const window = document.createElement("div")
@@ -128,6 +153,18 @@ function showMore(show) {
   const dropped = document.createElement("option")
   dropped.textContent = "Dropped"
   dropped.value = "Dropped"
+
+  select.addEventListener("change", (e) => {
+    console.log(show.runtime)
+    console.log(show.totalepisodes)
+    if (select.value === "Completed") {
+      episodes.childNodes[1].value = show.totalepisodes || show.runtime
+
+    //   if(show.runtime === undefined || null) {
+    //   episodes.childNodes[1].value = show.totalepisodes
+    // } else episodes.childNodes[1].value = show.runtime
+    }
+  })
   
   // Body 2 (Score)
   const score = document.createElement("div")
@@ -158,7 +195,6 @@ function showMore(show) {
   epInput.max = show.runtime || show.totalepisodes
 
   epInput.addEventListener("change", (e) => {
-    console.log(episodes.childNodes[1].value)
     if (parseInt(episodes.childNodes[1].value) === show.runtime || show.totalepisodes) {
       select.value = "Completed"
     }
@@ -258,7 +294,6 @@ function showMore(show) {
   .then((res) => res.json())
   .then((data) => {
     let object = {}
-    console.log(data[0].status)
 
     for(listshow of data) {
       object[listshow.title] = listshow.id
@@ -276,13 +311,10 @@ function showMore(show) {
       //   episodes.childNodes[1].value = listshow.episodes
       // }
     }
-    console.log(object)
     let fillTitle = Object.keys(object).find(element => element === title.textContent)
 
 
     let id = parseInt(object[fillTitle]) - 1
-    console.log(id)
-    console.log(data[id].status)
     
     if(fillTitle === title.textContent) {
       select.value = data[id].status
@@ -298,6 +330,16 @@ function removeElements(element1, element2){
 }
 
 // My List
+function filterBy(status, id) {
+  fetch("http://localhost:3000/shows")
+    .then((res) => res.json())
+    .then((data) => {
+     let filteredShows = data.filter((element) => element.status === status)
+     for(show of filteredShows) {
+      createCards(show, id)
+    }
+    })
+}
 
 function list () {
   const myList = document.getElementById("list")
@@ -316,22 +358,56 @@ function createFilters() {
   if (filters.innerHTML === "") {
     const all = document.createElement("button")
     all.textContent = "All"
+    all.addEventListener("click", (e) => {
+      clearSearch()
+      createList()
+      // fetch("http://localhost:3000/shows")
+      // .then((res) => res.json())
+      // .then((data) => {
+      //   for(show of data) {
+      //     createCards(show)
+      //   }
+      // })
+    })
     filters.appendChild(all)
   
     const planning = document.createElement("button")
     planning.textContent = "Planning"
+    planning.addEventListener("click", (e) => {
+      clearSearch()
+      createTitle("Planning", "planning-head")
+      filterBy("Plan to watch","planning-container")
+    })
     filters.appendChild(planning)
   
     const watching = document.createElement("button")
     watching.textContent = "Watching"
+    watching.addEventListener("click", (e) => {
+     clearSearch()
+     createTitle("Watching", "watching-head")
+     filterBy("Watching", "watching-container")
+    })
+    
     filters.appendChild(watching)
   
     const completed = document.createElement("button")
     completed.textContent = "Completed"
+    completed.addEventListener("click", (e) => {
+      clearSearch()
+      createTitle("Completed", "completed-head")
+      filterBy("Completed", "completed-container")
+    })
+
     filters.appendChild(completed)
   
     const dropped = document.createElement("button")
     dropped.textContent = "Dropped"
+    dropped.addEventListener("click", (e) => {
+      clearSearch()
+      createTitle("Dropped", "dropped-head")
+      filterBy("Dropped", "dropped-container")
+    })
+
     filters.appendChild(dropped)
   }
 
@@ -342,14 +418,33 @@ function createFilters() {
 }
 
 function createList() {
-  fetch("http://localhost:3000/shows")
-  .then((res) => res.json())
-  .then((data) => {
-    for(show of data) {
-      createCards(show)
-    }
-  })
+  // fetch("http://localhost:3000/shows")
+  // .then((res) => res.json())
+  // .then((data) => {
+    createTitle("Watching", "watching-head")
+    filterBy("Watching", "watching-container")
+
+    createTitle("Completed", "completed-head")
+    filterBy("Completed", "completed-container")
+
+    createTitle("Dropped", "dropped-head")
+    filterBy("Dropped", "dropped-container")
+
+    createTitle("Planning", "planning-head")
+    filterBy("Plan to watch", "planning-container")
+
+
+  // })
 }
+
+function createTitle(headText, headId) {
+  let container = document.getElementById(headId)
+  let header = document.createElement("h1")
+  header.className = "filter-header"
+  header.textContent = headText
+  container.appendChild(header)
+}
+
 
 // function createSort () {
   // const filters = document.getElementById("list-filters")
