@@ -6,12 +6,12 @@
   </head>
   <body>
     <div class="top-bar">
-      <h1 class="bar-content">Keep a list of your favorite shows!</h1>
+      <h1 id = "top-title" class="bar-content">TV Show List</h1>
       <div id="bar-clickable">
         <h2 id= "list" class = "bar-content">My List</h2>
         <!-- <h2 id="search" class = "bar-content">Search</h2> -->
         <form id= "search-form">
-          <input type="text" name="text">
+          <input id = "search-input" type="text" name="text">
           <input type="submit" name="submit" value="Search">
         </form>
       </div>
@@ -19,16 +19,17 @@
     <!-- <div id = "search-bar"></div> -->
   <div id = "body-content">
     <div id = "list-filters"></div>
+    <div id = "card-head"></div>
     <div id = "card-container"></div>
     <div id = "filtered-containers">
       <div id = "watching-head"></div>
       <div id = "watching-container"></div>
+      <div id = "planning-head"></div>
+      <div id = "planning-container"></div>
       <div id = "completed-head"></div>
       <div id = "completed-container"></div>
       <div id = dropped-head></div>
       <div id = "dropped-container"></div>
-      <div id = "planning-head"></div>
-      <div id = "planning-container"></div>
     </div>
   </div>
   </body>

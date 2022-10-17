@@ -67,7 +67,7 @@
       "title": "Legacy: The True Story of the LA Lakers",
       "status": "Watching",
       "score": "8",
-      "episodes": "7",
+      "episodes": "6",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/417/1044636.jpg",
       "totalepisodes": null,
       "id": 8
@@ -76,7 +76,7 @@
       "title": "Narcos",
       "status": "Plan to watch",
       "score": "",
-      "episodes": "",
+      "episodes": "2",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/166/416516.jpg",
       "totalepisodes": null,
       "id": 9
@@ -89,6 +89,15 @@
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/145/363769.jpg",
       "totalepisodes": 60,
       "id": 10
+    },
+    {
+      "title": "The Office",
+      "status": "Watching",
+      "score": "",
+      "episodes": "6",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/4/11322.jpg",
+      "totalepisodes": 30,
+      "id": 11
     }
   ]
 }

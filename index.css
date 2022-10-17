@@ -1,27 +1,55 @@
 * {
   color: white;
-  background-color: #332940;
+  background-color: #121212;
+  font-family:sans-serif;
+}
+
+body {
+  margin: 0px;
 }
 
 .top-bar {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  background-color: black;
 }
 
 #search-form {
   display: flex;
   align-items: center;
+  padding-left: 15px;
+  padding-right: 30px;
   padding-bottom: 15px;
+  background-color: black;
+}
+
+#search-form input {
+  font-family:sans-serif;
 }
 
 .bar-content {
   padding: 10px;
+  background-color: black;
+}
+
+#top-title {
+ padding-left: 30px;
+}
+
+h1 {
+  text-decoration-line: overline;
+  text-shadow: 4px 4px 3px black;
+}
+
+h2 {
+  text-shadow: 4px 4px 3px black;
 }
 
 #bar-clickable {
   display: flex;
   flex-direction: row;
+  background-color: black;
 }
 
 #list {
@@ -140,10 +168,13 @@
   border: 1px solid black;
   border-radius: 10px;
   z-index: 10;
-  background-color: white;
   width: 1000px;
   height: 300px;
   max-width: 80%;
+
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
 }
 
 #overlay {
@@ -163,8 +194,9 @@
   padding: 10px 15px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid black;
+  background-color: black;
 }
 
 .pop-up-title {
@@ -182,9 +214,19 @@
 }
 /* Body */
 .pop-up-body {
+  font-size: 20px;
   display: flex;
   justify-content:space-around;
-  padding: 10px 15px;
+  align-items: center;
+  padding: 40px 15px;
+}
+
+input {
+  font-size: 16px;
+}
+
+select {
+  font-size: 16px;
 }
 
 .pop-up-score {
@@ -213,20 +255,51 @@
 .pop-up-foot {
   display: flex;
   justify-content: center;
-  align-self: flex-end;
+  align-items: flex-end;
   padding: 10px;
+  padding-top: 40px;
 }
 
+.pop-up-foot button {
+  font-size: 20px;
+}
 
 /* List */
 
 #list-filters {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
+  /* position:fixed; */
+  flex-direction: row;
   width: 150px;
 }
 
+.filter-button {
+  background-color:#4C4E52;
+  border: 3px solid black;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration-style: wavy;
+  /* text-decoration: none; */
+  /* display: inline-block; */
+  font-size: 16px;
+}
+
+.filter-button-selected {
+  background-color: black;
+  border: 3px solid black;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration-style: wavy;
+  /* text-decoration: none; */
+  /* display: inline-block; */
+  font-size: 16px;
+}
+
+/* 
 #body-content {
   display: flex;
   justify-content: center;
-}
+} */
