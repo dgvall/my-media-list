@@ -101,7 +101,7 @@
     },
     {
       "title": "Mr. Robot",
-      "status": "Dropped",
+      "status": "Completed",
       "score": "",
       "episodes": "5",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/211/528026.jpg",
@@ -157,7 +157,7 @@
       "title": "Narcos",
       "status": "Plan to watch",
       "score": "",
-      "episodes": "",
+      "episodes": "0",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/166/416516.jpg",
       "totalepisodes": null,
       "id": 18
@@ -170,6 +170,24 @@
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/398/996611.jpg",
       "totalepisodes": null,
       "id": 19
+    },
+    {
+      "title": "The Office",
+      "status": "Watching",
+      "score": "",
+      "episodes": "1",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/4/11322.jpg",
+      "totalepisodes": 30,
+      "id": 20
+    },
+    {
+      "title": "5 toubun no hanayome",
+      "status": "Completed",
+      "score": "10",
+      "episodes": "24",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/174/436196.jpg",
+      "totalepisodes": 24,
+      "id": 21
     }
   ]
 }

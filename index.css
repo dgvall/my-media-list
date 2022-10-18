@@ -8,11 +8,35 @@ body {
   margin: 0px;
 }
 
+#search-form input {
+  font-family:sans-serif;
+  border: 2px solid #4C4E52;
+  border-radius: 2px;
+  background-color:rgba(43, 43, 43, 0.5);
+  cursor: pointer;
+}
+
 .top-bar {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   background-color: black;
+  max-height: 10vh;
+}
+
+select, input{  
+  font-size: 16px;
+  border-radius: 7px;
+  width: auto;
+  font-weight: 500;
+  display: inline-block;
+  border: 0;
+  border: solid #4C4E52 2px;
+  background-color: black;
+}
+
+select {
+  cursor: pointer;
 }
 
 #search-form {
@@ -24,17 +48,18 @@ body {
   background-color: black;
 }
 
-#search-form input {
-  font-family:sans-serif;
-}
 
 .bar-content {
-  padding: 10px;
+  padding: none;
+  margin: none;
   background-color: black;
 }
 
 #top-title {
- padding-left: 30px;
+  font-size: 5vh;
+  font-weight: bolder;
+  padding-left: 30px;
+  margin: none;
 }
 
 h1 {
@@ -54,6 +79,8 @@ h2 {
 
 #list {
   padding-right: 20px;
+  cursor: pointer;
+  padding-top: 1.9vh;
 }
 
 #card-container {
@@ -141,8 +168,10 @@ h2 {
   font-family: sans-serif;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: visibility 0s, opacity 0.5s linear; 
-  transition: visibility 0s, opacity 0.5s linear;
+  /* -webkit-transition: visibility 0s, opacity 0.5s linear; 
+  transition: visibility 0s, opacity 0.5s linear; */
+
+  transition: all .2s ease;
 }
 
 /* Hover on card */
@@ -151,11 +180,12 @@ h2 {
 }
 
 .card:hover div {
-  width: 150px;
+  width: auto;
   padding: 8px 15px;
   visibility: visible;
   opacity: 0.7; 
   z-index: 1;
+  transform: translateY(-109%);
 }
 
 /* POP UP */
@@ -187,6 +217,7 @@ h2 {
   bottom: 0;
   background-color: rgba(0, 0, 0, .5);
   pointer-events: all;
+  cursor: pointer;
 }
 
 /* Header */
@@ -211,6 +242,7 @@ h2 {
   background: none;
   font-size: 1.25rem;
   font-weight: bold;
+  cursor: pointer;
 }
 /* Body */
 .pop-up-body {
@@ -219,14 +251,7 @@ h2 {
   justify-content:space-around;
   align-items: center;
   padding: 40px 15px;
-}
-
-input {
-  font-size: 16px;
-}
-
-select {
-  font-size: 16px;
+  margin: 0 0 0 2vw;
 }
 
 .pop-up-score {
@@ -262,6 +287,19 @@ select {
 
 .pop-up-foot button {
   font-size: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  width: 15%;
+  font-weight: 500;
+  display: inline-block;
+  border: 0;
+  border: solid black 3px;
+  background-color: #4C4E52;
+}
+
+.pop-up-foot button:hover {
+background-color: rgb(0, 0, 0);
+transition: .1s background ease;
 }
 
 /* List */
@@ -284,11 +322,13 @@ select {
   /* text-decoration: none; */
   /* display: inline-block; */
   font-size: 16px;
+  cursor: pointer;
 }
 
 .filter-button-selected {
   background-color: black;
   border: 3px solid black;
+  border-bottom: 2px solid white;
   color: white;
   padding: 15px 32px;
   text-align: center;
@@ -296,6 +336,7 @@ select {
   /* text-decoration: none; */
   /* display: inline-block; */
   font-size: 16px;
+  cursor: pointer;
 }
 
 /* 

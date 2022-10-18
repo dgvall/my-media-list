@@ -372,7 +372,6 @@ console.log(page)
     }
     let fillTitle = Object.keys(object).find(element => element === title.textContent)
 
-
     let id = parseInt(object[fillTitle]) - 1
     
     if(fillTitle === title.textContent) {
