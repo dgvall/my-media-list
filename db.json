@@ -19,13 +19,67 @@
       "id": 2
     },
     {
+      "title": "Stranger Things",
+      "status": "Dropped",
+      "score": "",
+      "episodes": "16",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/396/991288.jpg",
+      "totalepisodes": null,
+      "id": 3
+    },
+    {
+      "title": "13 Reasons Why",
+      "status": "Completed",
+      "score": "6",
+      "episodes": "40",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/258/646815.jpg",
+      "totalepisodes": null,
+      "id": 4
+    },
+    {
+      "title": "Dexter",
+      "status": "Completed",
+      "score": "9",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/145/363769.jpg",
+      "totalepisodes": 60,
+      "id": 5
+    },
+    {
+      "title": "Dexter: New Blood",
+      "status": "Completed",
+      "score": "9",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/373/933740.jpg",
+      "totalepisodes": 60,
+      "id": 6
+    },
+    {
       "title": "Game of Thrones",
       "status": "Completed",
       "score": "9",
       "episodes": "60",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/190/476117.jpg",
       "totalepisodes": 60,
-      "id": 3
+      "id": 7
+    },
+    {
+      "title": "House of the Dragon",
+      "status": "Watching",
+      "score": "8",
+      "episodes": "9",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/423/1058597.jpg",
+      "totalepisodes": null,
+      "id": 8
+    },
+    {
+      "title": "Black Mirror",
+      "status": "Completed",
+      "score": "8",
+      "episodes": "40",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/240/601964.jpg",
+      "totalepisodes": null,
+      "id": 9
     },
     {
       "title": "The Sopranos",
@@ -34,70 +88,88 @@
       "episodes": "60",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/4/11341.jpg",
       "totalepisodes": 60,
-      "id": 4
+      "id": 10
     },
     {
-      "title": "Death Note",
+      "title": "House",
       "status": "Completed",
-      "score": "8",
-      "episodes": "30",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/403/1009233.jpg",
-      "totalepisodes": 30,
-      "id": 5
+      "score": "9",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/357/894990.jpg",
+      "totalepisodes": 60,
+      "id": 11
     },
     {
       "title": "Mr. Robot",
       "status": "Dropped",
-      "score": "6",
-      "episodes": "12",
+      "score": "",
+      "episodes": "5",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/211/528026.jpg",
       "totalepisodes": 60,
-      "id": 6
+      "id": 12
     },
     {
-      "title": "Ozark",
+      "title": "Lost",
+      "status": "Dropped",
+      "score": "7",
+      "episodes": "59",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/0/1389.jpg",
+      "totalepisodes": 60,
+      "id": 13
+    },
+    {
+      "title": "BoJack Horseman",
+      "status": "Completed",
+      "score": "10",
+      "episodes": "60",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/405/1012627.jpg",
+      "totalepisodes": null,
+      "id": 14
+    },
+    {
+      "title": "Invincible",
       "status": "Completed",
       "score": "9",
-      "episodes": "52",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/398/996611.jpg",
+      "episodes": "10",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/296/742103.jpg",
       "totalepisodes": null,
-      "id": 7
+      "id": 15
+    },
+    {
+      "title": "Squid Game",
+      "status": "Completed",
+      "score": "7",
+      "episodes": "10",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/362/906711.jpg",
+      "totalepisodes": null,
+      "id": 16
     },
     {
       "title": "Legacy: The True Story of the LA Lakers",
-      "status": "Watching",
+      "status": "Completed",
       "score": "8",
-      "episodes": "6",
+      "episodes": "10",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/417/1044636.jpg",
       "totalepisodes": null,
-      "id": 8
+      "id": 17
     },
     {
       "title": "Narcos",
       "status": "Plan to watch",
       "score": "",
-      "episodes": "2",
+      "episodes": "",
       "image": "https://static.tvmaze.com/uploads/images/medium_portrait/166/416516.jpg",
       "totalepisodes": null,
-      "id": 9
+      "id": 18
     },
     {
-      "title": "Dexter",
+      "title": "Ozark",
       "status": "Plan to watch",
       "score": "",
-      "episodes": "2",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/145/363769.jpg",
-      "totalepisodes": 60,
-      "id": 10
-    },
-    {
-      "title": "The Office",
-      "status": "Watching",
-      "score": "",
-      "episodes": "6",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/4/11322.jpg",
-      "totalepisodes": 30,
-      "id": 11
+      "episodes": "",
+      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/398/996611.jpg",
+      "totalepisodes": null,
+      "id": 19
     }
   ]
 }

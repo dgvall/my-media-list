@@ -157,7 +157,38 @@ console.log(page)
   const button = document.createElement("button")
   button.className = "close-button"
   button.innerHTML = "&times;"
-  button.addEventListener("click", (e) => removeElements(overlay, window))
+  button.addEventListener("click", (e) => {
+    removeElements(overlay, window)
+console.log(page)
+    // if (page === "Search") {
+    //   console.log(page)
+    // }
+
+    if (page === "All") {
+      clearSearch()
+      createList()
+    }
+    if (page === "Watching") {
+      clearSearch()
+      createTitle("Watching", "watching-head")
+      filterBy("Watching", "watching-container")
+    }
+    if (page === "Completed") {
+      clearSearch()
+      createTitle("Completed", "completed-head")
+      filterBy("Completed", "completed-container")
+    }
+    if (page === "Planning") {
+      clearSearch()
+      createTitle("Planning", "planning-head")
+      filterBy("Plan to watch","planning-container")
+    }
+    if (page === "Dropped") {
+      clearSearch()
+      createTitle("Dropped", "dropped-head")
+      filterBy("Dropped", "dropped-container")
+    }
+  })
 
   // Pop up body
   const body = document.createElement("div")
@@ -227,7 +258,7 @@ console.log(page)
 
   const epLabel = document.createElement("label")
   epLabel.className = "pop-up-labels"
-  epLabel.textContent = "Episodes Watched"
+  epLabel.textContent = "Episode Progress"
 
   const epInput = document.createElement("input")
   epInput.type = "number"
