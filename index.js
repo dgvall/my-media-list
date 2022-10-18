@@ -92,17 +92,37 @@ function createCards(show, id="card-container") {
   card.appendChild(img)
   card.appendChild(title)
 }
+// function returnShowCount (show) {
+//   let epCount = 0
+//     fetch(`https://api.tvmaze.com/shows/164/episodes`)
+//     .then((res) => res.json())
+//     .then(data => {
+//       return data.length
+//     })
+// }
 
-function showMore(show) {
+async function returnShowCount() {
+  let result = await fetch("https://api.tvmaze.com/shows/164/episodes")
+  let data = await result.json()
+  console.log(data)
+  return data.length
+}
+// console.log(returnShowCount())
+
+function showMore(show, showcount) {
   console.log(show)
   //        EPISODE COUNT NOT WORKING
-  // const epCount = function() {
+  // let epCount = 0
+  // function epFun() {
   //   fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
   //   .then((res) => res.json())
-  //   .then(data => data.length)
+  //   .then(data => {
+  //     epCount = data.length
+  //     return epCount
+  //   })
   // }
-
-  // console.log(epCount())
+  // console.log(epFun())
+  // console.log(epCount)
 
   //        EPISODE COUNT NOT WORKING
 
