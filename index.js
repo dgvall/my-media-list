@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded",(e) => {
  createFilters()
  createList()
 })
-// keeps track of current page
+// Keeps track of current page
 let page = "All"
 
 // Search Button
@@ -21,7 +21,7 @@ function search() {
   })
 }
 
-// Prevent searches from stacking
+// Prevent searches and headers from stacking
 function clearSearch() {
   let cardHead = document.getElementById("card-head")
   cardHead.innerHTML = ""
@@ -92,39 +92,17 @@ function createCards(show, id="card-container") {
   card.appendChild(img)
   card.appendChild(title)
 }
-// function returnShowCount (show) {
-//   let epCount = 0
-//     fetch(`https://api.tvmaze.com/shows/164/episodes`)
-//     .then((res) => res.json())
-//     .then(data => {
-//       return data.length
-//     })
-// }
 
-async function returnShowCount() {
-  let result = await fetch("https://api.tvmaze.com/shows/164/episodes")
+async function showMore(show) {
+  let result = await
+  fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
   let data = await result.json()
-  console.log(data)
-  return data.length
-}
-// console.log(returnShowCount())
+  const epCount = data.length
 
-function showMore(show, showcount) {
-  console.log(show)
-  //        EPISODE COUNT NOT WORKING
-  // let epCount = 0
-  // function epFun() {
-  //   fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
-  //   .then((res) => res.json())
-  //   .then(data => {
-  //     epCount = data.length
-  //     return epCount
-  //   })
-  // }
-  // console.log(epFun())
-  // console.log(epCount)
-
-  //        EPISODE COUNT NOT WORKING
+  // Episodes determined by db.json
+  console.log(show.totalepisodes)
+  // Episodes determined by API
+  console.log(epCount)
 
   // Window
   const window = document.createElement("div")
@@ -133,38 +111,7 @@ function showMore(show, showcount) {
   // Overlay
   const overlay = document.createElement("div")
   overlay.id = "overlay"
-  overlay.addEventListener("click", (e) => {
-    removeElements(overlay, window)
-console.log(page)
-    // if (page === "Search") {
-    //   console.log(page)
-    // }
-
-    if (page === "All") {
-      clearSearch()
-      createList()
-    }
-    if (page === "Watching") {
-      clearSearch()
-      createTitle("Watching", "watching-head")
-      filterBy("Watching", "watching-container")
-    }
-    if (page === "Completed") {
-      clearSearch()
-      createTitle("Completed", "completed-head")
-      filterBy("Completed", "completed-container")
-    }
-    if (page === "Planning") {
-      clearSearch()
-      createTitle("Planning", "planning-head")
-      filterBy("Plan to watch","planning-container")
-    }
-    if (page === "Dropped") {
-      clearSearch()
-      createTitle("Dropped", "dropped-head")
-      filterBy("Dropped", "dropped-container")
-    }
-  })
+  overlay.addEventListener("click", (e) => removeElements(overlay, window))
 
   // Header
   const header = document.createElement("div")
@@ -177,38 +124,7 @@ console.log(page)
   const button = document.createElement("button")
   button.className = "close-button"
   button.innerHTML = "&times;"
-  button.addEventListener("click", (e) => {
-    removeElements(overlay, window)
-console.log(page)
-    // if (page === "Search") {
-    //   console.log(page)
-    // }
-
-    if (page === "All") {
-      clearSearch()
-      createList()
-    }
-    if (page === "Watching") {
-      clearSearch()
-      createTitle("Watching", "watching-head")
-      filterBy("Watching", "watching-container")
-    }
-    if (page === "Completed") {
-      clearSearch()
-      createTitle("Completed", "completed-head")
-      filterBy("Completed", "completed-container")
-    }
-    if (page === "Planning") {
-      clearSearch()
-      createTitle("Planning", "planning-head")
-      filterBy("Plan to watch","planning-container")
-    }
-    if (page === "Dropped") {
-      clearSearch()
-      createTitle("Dropped", "dropped-head")
-      filterBy("Dropped", "dropped-container")
-    }
-  })
+  button.addEventListener("click", (e) => removeElements(overlay, window))
 
   // Pop up body
   const body = document.createElement("div")
@@ -224,10 +140,6 @@ console.log(page)
 
   const select = document.createElement("select")
   select.textContent = "Select"
-
-  // const placeholder = document.createElement("option")
-  // placeholder.placeholder = "Status"
-  // placeholder.value = "none"
 
   const planning = document.createElement("option")
   planning.placeholder = "Status"
@@ -247,14 +159,8 @@ console.log(page)
   dropped.value = "Dropped"
 
   select.addEventListener("change", (e) => {
-    console.log(show.runtime)
-    console.log(show.totalepisodes)
     if (select.value === "Completed") {
-      episodes.childNodes[1].value = show.totalepisodes || show.runtime
-
-    //   if(show.runtime === undefined || null) {
-    //   episodes.childNodes[1].value = show.totalepisodes
-    // } else episodes.childNodes[1].value = show.runtime
+      episodes.childNodes[1].value = show.totalepisodes || epCount
     }
   })
   
@@ -284,10 +190,14 @@ console.log(page)
   epInput.type = "number"
   epInput.name = "number"
   epInput.min = 0
-  epInput.max = show.runtime || show.totalepisodes
-
+  epInput.max = show.totalepisodes || epCount
   epInput.addEventListener("change", (e) => {
-    if (parseInt(episodes.childNodes[1].value) === show.runtime || show.totalepisodes) {
+    if(!show.totalepisodes) {
+    if (episodes.childNodes[1].value >= epCount) {
+      select.value = "Completed"
+    }
+  }
+    if (episodes.childNodes[1].value >= show.totalepisodes) {
       select.value = "Completed"
     }
   })
@@ -300,6 +210,31 @@ console.log(page)
    saveButton.textContent = "Save"
 
    saveButton.addEventListener("click", (e) => {
+    if (page === "All") {
+      clearSearch()
+      createList()
+    }
+    if (page === "Watching") {
+      clearSearch()
+      createTitle("Watching", "watching-head")
+      filterBy("Watching", "watching-container")
+    }
+    if (page === "Completed") {
+      clearSearch()
+      createTitle("Completed", "completed-head")
+      filterBy("Completed", "completed-container")
+    }
+    if (page === "Planning") {
+      clearSearch()
+      createTitle("Planning", "planning-head")
+      filterBy("Plan to watch","planning-container")
+    }
+    if (page === "Dropped") {
+      clearSearch()
+      createTitle("Dropped", "dropped-head")
+      filterBy("Dropped", "dropped-container")
+    }
+      
     fetch("http://localhost:3000/shows")
       .then(res => res.json())
       .then((data) => {
@@ -337,7 +272,7 @@ console.log(page)
         score: score.childNodes[1].value,
         episodes: episodes.childNodes[1].value,
         image: show.image.medium,
-        totalepisodes: show.runtime
+        totalepisodes: epCount
       })
     })
     .then((res) => res.json())
@@ -363,7 +298,6 @@ console.log(page)
   body.appendChild(status)
   status.appendChild(label)
   status.appendChild(select)
-  // select.appendChild(placeholder)
   select.appendChild(planning)
   select.appendChild(watching)
   select.appendChild(completed)
@@ -426,7 +360,6 @@ function list () {
     clearSearch()
     createList()
     createFilters()
-    // createSort()
   })
 }
 
@@ -519,11 +452,6 @@ function createFilters() {
     })
     filters.appendChild(dropped)
   }
-
-  // if (container.innerHTML === "") {
-  //   filters.innerHTML = ""
-  //   container.innerText = "Try Searching First!"
-  // }
 }
 
 function createList() {
@@ -555,10 +483,3 @@ function createTitle(headText, headId) {
   header.textContent = headText
   container.appendChild(header)
 }
-
-
-// function createSort () {
-  // const filters = document.getElementById("list-filters")
-
-  // if you have time, sort by score and alphabetical order
-// }

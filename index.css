@@ -84,7 +84,6 @@ h2 {
 }
 
 #card-container {
-  /* Try searching first font size */
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -93,7 +92,6 @@ h2 {
 }
 
 #watching-container {
-  /* Try searching first font size */
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -102,7 +100,6 @@ h2 {
 }
 
 #completed-container {
-  /* Try searching first font size */
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -111,7 +108,6 @@ h2 {
 }
 
 #dropped-container {
-  /* Try searching first font size */
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -120,17 +116,11 @@ h2 {
 }
 
 #planning-container {
-  /* Try searching first font size */
   font-size: 20px;
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-}
-
-#filtered-containers {
-  /* display: flex;
-  justify-content: center; */
 }
 
 .filter-header {
@@ -146,12 +136,11 @@ h2 {
   margin: 10px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 5px;
   margin: 15px;
   margin-bottom: 50px;
 }
 
-/* Add rounded corners to the top left and the top right corner of the image */
 .cardImg {
   position: relative;
   margin-right: 10px;
@@ -168,9 +157,6 @@ h2 {
   font-family: sans-serif;
   opacity: 0;
   visibility: hidden;
-  /* -webkit-transition: visibility 0s, opacity 0.5s linear; 
-  transition: visibility 0s, opacity 0.5s linear; */
-
   transition: all .2s ease;
 }
 
@@ -203,7 +189,6 @@ h2 {
   max-width: 80%;
 
   display: flex;
-  /* justify-content: center; */
   flex-direction: column;
 }
 
@@ -307,7 +292,6 @@ transition: .1s background ease;
 #list-filters {
   display: flex;
   justify-content: flex-start;
-  /* position:fixed; */
   flex-direction: row;
   width: 150px;
 }
@@ -319,8 +303,6 @@ transition: .1s background ease;
   padding: 15px 32px;
   text-align: center;
   text-decoration-style: wavy;
-  /* text-decoration: none; */
-  /* display: inline-block; */
   font-size: 16px;
   cursor: pointer;
 }
@@ -333,14 +315,6 @@ transition: .1s background ease;
   padding: 15px 32px;
   text-align: center;
   text-decoration-style: wavy;
-  /* text-decoration: none; */
-  /* display: inline-block; */
   font-size: 16px;
   cursor: pointer;
 }
-
-/* 
-#body-content {
-  display: flex;
-  justify-content: center;
-} */
