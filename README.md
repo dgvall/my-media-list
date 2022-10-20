@@ -1,6 +1,6 @@
 # myTV
 
-myTV is a single page application that allows users to create a personal list of TV shows. Each TV show in a list presents attributes of status (completed, planning, watching, etc.), episode progress, and score.
+myTV is a single page application that allows users to create a personal list of TV shows. Each TV show in a list presents attributes of status (completed, planning, watching, dropped), episode progress, and score.
 
 ## Setup
 
