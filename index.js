@@ -208,32 +208,9 @@ async function showMore(show) {
  
    const saveButton = document.createElement("button")
    saveButton.textContent = "Save"
+   console.log(page)
 
    saveButton.addEventListener("click", (e) => {
-    if (page === "All") {
-      clearSearch()
-      createList()
-    }
-    if (page === "Watching") {
-      clearSearch()
-      createTitle("Watching", "watching-head")
-      filterBy("Watching", "watching-container")
-    }
-    if (page === "Completed") {
-      clearSearch()
-      createTitle("Completed", "completed-head")
-      filterBy("Completed", "completed-container")
-    }
-    if (page === "Planning") {
-      clearSearch()
-      createTitle("Planning", "planning-head")
-      filterBy("Plan to watch","planning-container")
-    }
-    if (page === "Dropped") {
-      clearSearch()
-      createTitle("Dropped", "dropped-head")
-      filterBy("Dropped", "dropped-container")
-    }
       
     fetch("http://localhost:3000/shows")
       .then(res => res.json())
@@ -276,9 +253,35 @@ async function showMore(show) {
       })
     })
     .then((res) => res.json())
-    .then((show) => {})
+    .then((show) => show)
       }
       })
+setTimeout(function() {
+      if (page === "All") {
+        clearSearch()
+        createList()
+      }
+      if (page === "Watching") {
+        clearSearch()
+        createTitle("Watching", "watching-head")
+        filterBy("Watching", "watching-container")
+      }
+      if (page === "Completed") {
+        clearSearch()
+        createTitle("Completed", "completed-head")
+        filterBy("Completed", "completed-container")
+      }
+      if (page === "Planning") {
+        clearSearch()
+        createTitle("Planning", "planning-head")
+        filterBy("Plan to watch","planning-container")
+      }
+      if (page === "Dropped") {
+        clearSearch()
+        createTitle("Dropped", "dropped-head")
+        filterBy("Dropped", "dropped-container")
+      }}
+, 100)
    })
 
 // Append Elements
@@ -342,6 +345,28 @@ function removeElements(element1, element2){
 }
 
 // My List
+function createList() {
+  fetch("http://localhost:3000/shows")
+  .then((res) => res.json())
+  .then((data) => {
+if(data[0] === undefined) {
+  createTitle("Search for your favorite shows to start your list!", "watching-head")
+} else {
+    createTitle("Watching", "watching-head")
+    filterBy("Watching", "watching-container")
+
+    createTitle("Completed", "completed-head")
+    filterBy("Completed", "completed-container")
+
+    createTitle("Planning", "planning-head")
+    filterBy("Plan to watch", "planning-container")
+
+    createTitle("Dropped", "dropped-head")
+    filterBy("Dropped", "dropped-container")
+}
+  })
+}
+
 function filterBy(status, id) {
   fetch("http://localhost:3000/shows")
     .then((res) => res.json())
@@ -357,6 +382,7 @@ function filterBy(status, id) {
 function list () {
   const myList = document.getElementById("list")
   myList.addEventListener("click", (e) => {
+    page = "All"
     clearSearch()
     createList()
     createFilters()
@@ -404,7 +430,6 @@ function createFilters() {
     })
     filters.appendChild(watching)
 
-   
     completed.textContent = "Completed"
     completed.className ="filter-button"
     completed.addEventListener("click", (e) => {
@@ -454,32 +479,9 @@ function createFilters() {
   }
 }
 
-function createList() {
-  fetch("http://localhost:3000/shows")
-  .then((res) => res.json())
-  .then((data) => {
-if(data[0] === undefined) {
-  createTitle("Search for your favorite shows to start your list!", "watching-head")
-} else {
-  createTitle("Watching", "watching-head")
-    filterBy("Watching", "watching-container")
-
-    createTitle("Completed", "completed-head")
-    filterBy("Completed", "completed-container")
-
-    createTitle("Planning", "planning-head")
-    filterBy("Plan to watch", "planning-container")
-
-    createTitle("Dropped", "dropped-head")
-    filterBy("Dropped", "dropped-container")
-}
-  })
-}
-
 function createTitle(headText, headId) {
   let container = document.getElementById(headId)
   let header = document.createElement("h1")
-  header.className = "filter-header"
   header.textContent = headText
   container.appendChild(header)
 }
