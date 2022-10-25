@@ -1,40 +1,4 @@
 {
   "shows": [
-    {
-      "title": "Breaking Bad",
-      "status": "Plan to watch",
-      "score": "",
-      "episodes": "1",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg",
-      "totalepisodes": 62,
-      "id": 1
-    },
-    {
-      "title": "Ozark",
-      "status": "Completed",
-      "score": "",
-      "episodes": "44",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/398/996611.jpg",
-      "totalepisodes": 44,
-      "id": 2
-    },
-    {
-      "title": "Game of Thrones",
-      "status": "Watching",
-      "score": "",
-      "episodes": "3",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/190/476117.jpg",
-      "totalepisodes": 73,
-      "id": 3
-    },
-    {
-      "title": "House of the Dragon",
-      "status": "Dropped",
-      "score": "",
-      "episodes": "4",
-      "image": "https://static.tvmaze.com/uploads/images/medium_portrait/423/1058597.jpg",
-      "totalepisodes": 10,
-      "id": 4
-    }
   ]
 }

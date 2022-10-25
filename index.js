@@ -13,16 +13,16 @@ function search() {
 
   form.addEventListener("submit", (e) =>{
     e.preventDefault()
-    clearSearch()
+    clear()
     createTitle(`Search Result: ${e.target.text.value}`, "card-head")
     searchMovies(e.target.text.value)
-    clearList()
+    clearFilters()
     page = "Search"
   })
 }
 
-// Prevent searches and headers from stacking
-function clearSearch() {
+// Prevent containers and headers from stacking
+function clear() {
   let cardHead = document.getElementById("card-head")
   cardHead.innerHTML = ""
 
@@ -54,7 +54,8 @@ function clearSearch() {
   planningHead.innerHTML = ""
 }
 
-function clearList() {
+// Remove list filters
+function clearFilters() {
   let list = document.getElementById("list-filters")
   list.innerHTML = ""
 }
@@ -97,12 +98,16 @@ async function showMore(show) {
   let result = await
   fetch(`https://api.tvmaze.com/shows/${show.id}/episodes`)
   let data = await result.json()
-  const epCount = data.length
+  let epCount = data.length
+
+  if(show.totalepisodes) {
+    epCount = undefined
+  }
 
   // Episodes determined by db.json
-  console.log(show.totalepisodes)
+  console.log(`episode count by json id: ${show.totalepisodes}`)
   // Episodes determined by API
-  console.log(epCount)
+  console.log(`episode count by API id: ${epCount}`)
 
   // Window
   const window = document.createElement("div")
@@ -208,7 +213,7 @@ async function showMore(show) {
  
    const saveButton = document.createElement("button")
    saveButton.textContent = "Save"
-   console.log(page)
+   console.log(`Current Page: ${page}`)
 
    saveButton.addEventListener("click", (e) => {
       
@@ -219,7 +224,7 @@ async function showMore(show) {
       for(tvshow of data) {
        object[tvshow.title] = tvshow.id
       }
-
+      // PATCH if found, POST if unfound
       let found = Object.keys(object).find((element) => element === title.textContent)
       if(found) {
         fetch(`http://localhost:3000/shows/${object[found]}`, {
@@ -258,28 +263,24 @@ async function showMore(show) {
       })
 setTimeout(function() {
       if (page === "All") {
-        clearSearch()
+        clear()
         createList()
       }
       if (page === "Watching") {
-        clearSearch()
-        createTitle("Watching", "watching-head")
-        filterBy("Watching", "watching-container")
+        clear()
+        filterBy("Watching", "watching-container", "watching-head")
       }
       if (page === "Completed") {
-        clearSearch()
-        createTitle("Completed", "completed-head")
-        filterBy("Completed", "completed-container")
+        clear()
+        filterBy("Completed", "completed-container", "completed-head")
       }
       if (page === "Planning") {
-        clearSearch()
-        createTitle("Planning", "planning-head")
-        filterBy("Plan to watch","planning-container")
+        clear()
+        filterBy("Plan to watch","planning-container", "planning-head")
       }
       if (page === "Dropped") {
-        clearSearch()
-        createTitle("Dropped", "dropped-head")
-        filterBy("Dropped", "dropped-container")
+        clear()
+        filterBy("Dropped", "dropped-container", "dropped-head")
       }}
 , 100)
    })
@@ -319,6 +320,7 @@ setTimeout(function() {
   foot.appendChild(saveButton)
   
   // Fill Information If Logged
+
   fetch("http://localhost:3000/shows")
   .then((res) => res.json())
   .then((data) => {
@@ -330,9 +332,6 @@ setTimeout(function() {
     let fillTitle = Object.keys(object).find(element => element === title.textContent)
 
     let id = parseInt(object[fillTitle]) - 1 
-    console.log(object)
-    console.log(fillTitle)
-    console.log(id)
     if(fillTitle === title.textContent) {
       select.value = data[id].status
       score.childNodes[1].value = data[id].score
@@ -384,7 +383,7 @@ function list () {
   const myList = document.getElementById("list")
   myList.addEventListener("click", (e) => {
     page = "All"
-    clearSearch()
+    clear()
     createList()
     createFilters()
   })
@@ -392,7 +391,6 @@ function list () {
 
 function createFilters() {
   const filters = document.getElementById("list-filters")
-  const container = document.getElementById("card-container")
   const all = document.createElement("button")
   const watching = document.createElement("button")
   const completed = document.createElement("button")
@@ -409,7 +407,7 @@ function createFilters() {
       planning.className = "filter-button"
       dropped.className = "filter-button"
 
-      clearSearch()
+      clear()
       createList()
       page = "All"
     })
@@ -423,9 +421,8 @@ function createFilters() {
       completed.className = "filter-button"
       planning.className = "filter-button"
       dropped.className = "filter-button"
-     clearSearch()
-     createTitle("Watching", "watching-head")
-     filterBy("Watching", "watching-container")
+     clear()
+     filterBy("Watching", "watching-container", "watching-head")
      page = "Watching"
     })
     filters.appendChild(watching)
@@ -438,9 +435,8 @@ function createFilters() {
       completed.className = "filter-button-selected"
       planning.className = "filter-button"
       dropped.className = "filter-button"
-      clearSearch()
-      createTitle("Completed", "completed-head")
-      filterBy("Completed", "completed-container")
+      clear()
+      filterBy("Completed", "completed-container", "completed-head")
       page = "Completed"
     })
     filters.appendChild(completed)
@@ -454,9 +450,8 @@ function createFilters() {
       completed.className = "filter-button"
       planning.className = "filter-button-selected"
       dropped.className = "filter-button"
-      clearSearch()
-      createTitle("Planning", "planning-head")
-      filterBy("Plan to watch","planning-container")
+      clear()
+      filterBy("Plan to watch","planning-container", "planning-head")
       page = "Planning"
     })
     filters.appendChild(planning)
@@ -470,9 +465,8 @@ function createFilters() {
       completed.className = "filter-button"
       planning.className = "filter-button"
       dropped.className = "filter-button-selected"
-      clearSearch()
-      createTitle("Dropped", "dropped-head")
-      filterBy("Dropped", "dropped-container")
+      clear()
+      filterBy("Dropped", "dropped-container", "dropped-head")
       page = "Dropped"
     })
     filters.appendChild(dropped)

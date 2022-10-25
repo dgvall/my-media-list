@@ -8,6 +8,7 @@ body {
   margin: 0px;
 }
 
+/*Top Page */
 #search-form input {
   font-family:sans-serif;
   border: 2px solid #4C4E52;
@@ -48,7 +49,6 @@ select {
   background-color: black;
 }
 
-
 .bar-content {
   padding: none;
   margin: none;
@@ -76,7 +76,7 @@ h2 {
   flex-direction: row;
   background-color: black;
 }
-
+/* Page body */
 #list {
   padding-right: 20px;
   cursor: pointer;
@@ -128,7 +128,6 @@ h2 {
   justify-content: center;
 }
 
-
 .card {
   width: 210px;
   height: 295px;
@@ -160,7 +159,6 @@ h2 {
   transition: all .2s ease;
 }
 
-/* Hover on card */
 .card:hover {
   cursor: pointer;
 }
@@ -205,7 +203,6 @@ h2 {
   cursor: pointer;
 }
 
-/* Header */
 .pop-up-header {
   padding: 10px 15px;
   display: flex;
@@ -227,9 +224,8 @@ h2 {
   background: none;
   font-size: 1.25rem;
   font-weight: bold;
-  cursor: pointer;
 }
-/* Body */
+
 .pop-up-body {
   font-size: 20px;
   display: flex;
@@ -261,7 +257,6 @@ h2 {
   padding-bottom: 10px;
 }
 
-/* Footer */
 .pop-up-foot {
   display: flex;
   justify-content: center;
@@ -287,7 +282,7 @@ background-color: rgb(0, 0, 0);
 transition: .1s background ease;
 }
 
-/* List */
+/* Filters */
 
 #list-filters {
   display: flex;
