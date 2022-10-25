@@ -329,8 +329,10 @@ setTimeout(function() {
     }
     let fillTitle = Object.keys(object).find(element => element === title.textContent)
 
-    let id = parseInt(object[fillTitle]) - 1
-    
+    let id = parseInt(object[fillTitle]) - 1 
+    console.log(object)
+    console.log(fillTitle)
+    console.log(id)
     if(fillTitle === title.textContent) {
       select.value = data[id].status
       score.childNodes[1].value = data[id].score
@@ -352,28 +354,27 @@ function createList() {
 if(data[0] === undefined) {
   createTitle("Search for your favorite shows to start your list!", "watching-head")
 } else {
-    createTitle("Watching", "watching-head")
-    filterBy("Watching", "watching-container")
+    filterBy("Watching", "watching-container", "watching-head")
 
-    createTitle("Completed", "completed-head")
-    filterBy("Completed", "completed-container")
+    filterBy("Completed", "completed-container", "completed-head")
 
-    createTitle("Planning", "planning-head")
-    filterBy("Plan to watch", "planning-container")
+    filterBy("Plan to watch", "planning-container", "planning-head")
 
-    createTitle("Dropped", "dropped-head")
-    filterBy("Dropped", "dropped-container")
+    filterBy("Dropped", "dropped-container", "dropped-head")
 }
   })
 }
 
-function filterBy(status, id) {
+function filterBy(status, id, headId) {
   fetch("http://localhost:3000/shows")
     .then((res) => res.json())
     .then((data) => {
      let filteredShows = data.filter((element) => element.status === status)
      for(show of filteredShows) {
       createCards(show, id)
+    }
+    if (filteredShows[0]) {
+      createTitle(status, headId)
     }
     })
 }
@@ -397,7 +398,6 @@ function createFilters() {
   const completed = document.createElement("button")
   const planning = document.createElement("button")
   const dropped = document.createElement("button")
-
 
   if (filters.innerHTML === "") {
     all.textContent = "All"
