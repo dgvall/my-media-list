@@ -4,7 +4,7 @@ myTV is a single page application that allows users to create a personal list of
 
 ## Setup
 
-TV shows are searched through the TVmaze API. To add to or update your list, the db.json server must be runnning. Go to the my-media-list directory in your CLI and then proceed to installation and activation.
+TV shows are searched through the TVmaze API. To add to or update your list, the db.json server must be running. Go to the my-media-list directory in your CLI and then proceed to installation and activation.
 
 ### Installation
 ```bash
